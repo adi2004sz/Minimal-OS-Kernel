@@ -1,12 +1,26 @@
-bits 16
-org 0x7C00
+ORG 0x7c00
+BITS 16
 
-_start:
-    mov al, 0x41  ; Litera 'A'
-    mov ah, 0x0E  ; BIOS teletype mode
-    int 0x10      ; Apel BIOS pentru a afișa caracterul
+start:
+    mov si, message
+    call print
+    jmp $
+print:
+    mov bx, 0
+loop:
+    loadsb
+    cmp al, 0
+    je .done
+    call print_char
+    jmp .loop
+done:
+    ret
 
-    hlt
+print_char:
+    mov ah, 0eh
+    int 0x10
+    ret
+message: db 'Hello World!', 0
 
-times 510 - ($ - $$) db 0  ; Padding până la 510 bytes
-dw 0xAA55                  ; Boot sector signature
+times 510 - ($ - $$) db 0
+dw 0xAA55
