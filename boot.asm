@@ -1,10 +1,17 @@
 ORG 0
 BITS 16
 
-jmp 0x7c8:start
+_start:
+    jmp short start
+    nop
+
+times 33 db 0       ;create 33 bytes , BIOS Parameter Block
 
 start:
-    cli : //clear interruts
+    jmp 0x7c8:step2
+
+step2:
+    cli        ;clear interruts
     mov ax, 0x7c0
     mov ds, ax
     mov es, ax
@@ -12,7 +19,7 @@ start:
     mov ss, ax
     mov sp, 0x7c00
 
-    sti : //enable interrupts
+    sti        ;enable interrupts
 
     mov si, message
     call print
@@ -20,13 +27,13 @@ start:
 
 print:
     mov bx, 0
-loop:
+.loop:
     loadsb
     cmp al, 0
     je .done
     call print_char
     jmp .loop
-done:
+.done:
     ret
 
 print_char:
