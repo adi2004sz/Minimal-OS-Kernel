@@ -5,10 +5,15 @@ The project is not finished and it is ongoing.
 ## Project Structure
 
 Minimal-OS-Kernel/
+
 ├── boot.asm           # First stage bootloader (512 bytes, lives in MBR)
+
 ├── second_stage.asm   # Loads kernel, enters protected mode, and jumps to kernel
+
 ├── kernel.asm         # 32-bit protected mode kernel with VGA output
+
 ├── Makefile
+
 └── README.md
 
 ## Expected Output
