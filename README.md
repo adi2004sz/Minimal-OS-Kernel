@@ -19,6 +19,8 @@ Minimal-OS-Kernel/
 ## Expected Output
 The screen will clear, display a white text message, and render a colored box with the label "SUCCESS" in the center.
 
+![Image](https://github.com/user-attachments/assets/cd9d417c-15ac-4136-97c7-2fe6d3cac3bf)
+
 ## Concepts Covered
 - 16-bit real mode bootloading
 - BIOS disk and video interrupts (int 13h, int 10h)
